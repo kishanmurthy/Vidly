@@ -55,6 +55,14 @@ namespace Vidly.Controllers
 
             return Content(year+"/"+month);
         }
+
+
+
+        public ActionResult Details()
+        {
+
+            return Content("");
+        }
     }
     
 }
