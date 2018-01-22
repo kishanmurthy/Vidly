@@ -7,9 +7,22 @@ using Vidly.Models;
 using Vidly.ViewModels;
 namespace Vidly.Controllers
 {
-    public class MoviesController : Controller
+    public class MovieController : Controller
     {
         // GET: Movies
+        public ActionResult Index()
+        {
+            var movies = new List<Movie>
+            {
+                new Movie(){Name="Intersteller",Id=1},
+                new Movie(){Name="Inception",Id=2}
+            };
+            return View(movies);
+        }
+
+
+
+
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Padmavat" };
@@ -34,19 +47,7 @@ namespace Vidly.Controllers
         }
 
 
-        public ActionResult Index(int? pageIndex, string sortBy)
-        {
-            if(!pageIndex.HasValue)
-            {
-                pageIndex = 1;
-            }
-
-            if(String.IsNullOrEmpty(sortBy))
-            {
-                sortBy = "name";
-            }
-            return Content(String.Format("Page Index = {0} SortBy {1}",pageIndex,sortBy));
-        }
+        
 
 
         [Route("movies/released/{year:regex(\\d{4}):min(1800):max(2018)}/{month:regex(\\d{2}):range(1,12)}")]
