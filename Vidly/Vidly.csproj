@@ -184,6 +184,26 @@
     <Compile Include="Migrations\201801230836456_RemovedMembershipTypeId.Designer.cs">
       <DependentUpon>201801230836456_RemovedMembershipTypeId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801230914237_AddedMembershipName.cs" />
+    <Compile Include="Migrations\201801230914237_AddedMembershipName.Designer.cs">
+      <DependentUpon>201801230914237_AddedMembershipName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230914579_UpdateDatabaseNames.cs" />
+    <Compile Include="Migrations\201801230914579_UpdateDatabaseNames.Designer.cs">
+      <DependentUpon>201801230914579_UpdateDatabaseNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230927078_AddedBirthDate.cs" />
+    <Compile Include="Migrations\201801230927078_AddedBirthDate.Designer.cs">
+      <DependentUpon>201801230927078_AddedBirthDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230934454_ChangedBirthDateToDateTimeProperty.cs" />
+    <Compile Include="Migrations\201801230934454_ChangedBirthDateToDateTimeProperty.Designer.cs">
+      <DependentUpon>201801230934454_ChangedBirthDateToDateTimeProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230939238_AddedIsBirthDateValid.cs" />
+    <Compile Include="Migrations\201801230939238_AddedIsBirthDateValid.Designer.cs">
+      <DependentUpon>201801230939238_AddedIsBirthDateValid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -272,6 +292,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801230836456_RemovedMembershipTypeId.resx">
       <DependentUpon>201801230836456_RemovedMembershipTypeId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230914237_AddedMembershipName.resx">
+      <DependentUpon>201801230914237_AddedMembershipName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230914579_UpdateDatabaseNames.resx">
+      <DependentUpon>201801230914579_UpdateDatabaseNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230927078_AddedBirthDate.resx">
+      <DependentUpon>201801230927078_AddedBirthDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230934454_ChangedBirthDateToDateTimeProperty.resx">
+      <DependentUpon>201801230934454_ChangedBirthDateToDateTimeProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230939238_AddedIsBirthDateValid.resx">
+      <DependentUpon>201801230939238_AddedIsBirthDateValid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

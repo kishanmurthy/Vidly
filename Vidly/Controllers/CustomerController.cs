@@ -36,7 +36,7 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int Id)
         {
-            var customers = _context.Customers.ToList();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
             
             foreach(var customer in customers)
             {
