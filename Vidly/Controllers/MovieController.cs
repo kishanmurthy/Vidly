@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 namespace Vidly.Controllers
 {
     public class MovieController : Controller
@@ -30,7 +31,22 @@ namespace Vidly.Controllers
             return View(movies);
         }
 
+        public ActionResult Details(int Id)
+        {
 
+            var movies = _context.Movies.Include(c => c.Genre).ToList(); 
+            foreach(var movie in movies)
+            {
+                if(movie.Id ==Id)
+                {
+                    return View(movie);
+                }
+            }
+
+
+
+            return HttpNotFound();
+        }
 
 
         public ActionResult Random()
@@ -67,13 +83,6 @@ namespace Vidly.Controllers
             return Content(year+"/"+month);
         }
 
-
-
-        public ActionResult Details()
-        {
-
-            return Content("");
-        }
     }
     
 }
