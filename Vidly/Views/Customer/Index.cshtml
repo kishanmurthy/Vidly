@@ -6,17 +6,23 @@
 
 @if (Model.Count > 0)
 {
-    <table border="1" class="table">
-        <tr><th>Customers</th></tr>
-        @foreach (var customer in Model)
-        {
-            <tr>
-                <td>
-                    <a href="/customer/Details/@customer.Id">@customer.Name</a>
-                </td>
-            </tr>
-        }
-    </table>
+<table border="1" class="table">
+    <tr><th>Customers</th>
+    <th>Discount</th></tr>
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>
+                <a href="/customer/Details/@customer.Id">@customer.Name</a>
+
+
+            </td>
+            <td>
+                @customer.MembershipType.DiscountRate%
+            </td>
+        </tr>
+    }
+</table>
 }
 else
 {

@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -53,6 +59,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -148,7 +156,38 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801230652035_InitialModel.cs" />
+    <Compile Include="Migrations\201801230652035_InitialModel.Designer.cs">
+      <DependentUpon>201801230652035_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230715253_AddedIsSubcribedToCustomer.cs" />
+    <Compile Include="Migrations\201801230715253_AddedIsSubcribedToCustomer.Designer.cs">
+      <DependentUpon>201801230715253_AddedIsSubcribedToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230723178_AddMembershipType.cs" />
+    <Compile Include="Migrations\201801230723178_AddMembershipType.Designer.cs">
+      <DependentUpon>201801230723178_AddMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230739429_InsertedMembershipTypeToDbContext.cs" />
+    <Compile Include="Migrations\201801230739429_InsertedMembershipTypeToDbContext.Designer.cs">
+      <DependentUpon>201801230739429_InsertedMembershipTypeToDbContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230740034_PopulateMembershipType.cs" />
+    <Compile Include="Migrations\201801230740034_PopulateMembershipType.Designer.cs">
+      <DependentUpon>201801230740034_PopulateMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230747117_AddedAnotationToCustomerModel.cs" />
+    <Compile Include="Migrations\201801230747117_AddedAnotationToCustomerModel.Designer.cs">
+      <DependentUpon>201801230747117_AddedAnotationToCustomerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230836456_RemovedMembershipTypeId.cs" />
+    <Compile Include="Migrations\201801230836456_RemovedMembershipTypeId.Designer.cs">
+      <DependentUpon>201801230836456_RemovedMembershipTypeId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
@@ -211,6 +250,29 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801230652035_InitialModel.resx">
+      <DependentUpon>201801230652035_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230715253_AddedIsSubcribedToCustomer.resx">
+      <DependentUpon>201801230715253_AddedIsSubcribedToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230723178_AddMembershipType.resx">
+      <DependentUpon>201801230723178_AddMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230739429_InsertedMembershipTypeToDbContext.resx">
+      <DependentUpon>201801230739429_InsertedMembershipTypeToDbContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230740034_PopulateMembershipType.resx">
+      <DependentUpon>201801230740034_PopulateMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230747117_AddedAnotationToCustomerModel.resx">
+      <DependentUpon>201801230747117_AddedAnotationToCustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230836456_RemovedMembershipTypeId.resx">
+      <DependentUpon>201801230836456_RemovedMembershipTypeId.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

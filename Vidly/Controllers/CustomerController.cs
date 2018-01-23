@@ -4,14 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using System.Data.Entity;
 namespace Vidly.Controllers
 {
     public class CustomerController : Controller
     {
         // GET: Customer
+
+        private MyDbContext _context;
+
+        public CustomerController()
+        {
+            _context = new MyDbContext();
+        }
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+            base.Dispose(disposing);
+        }
         public ActionResult Index()
         {
-            var customers = GetCustomers();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
         
         return View(customers);
@@ -20,7 +36,7 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int Id)
         {
-            var customers = GetCustomers();
+            var customers = _context.Customers.ToList();
             
             foreach(var customer in customers)
             {
@@ -37,6 +53,7 @@ namespace Vidly.Controllers
 
         private List<Customer> GetCustomers()
         {
+            
             return new List<Customer>
             {
                 new Customer(){Name = "Tony", Id = 1},
