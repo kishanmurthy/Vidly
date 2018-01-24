@@ -18,25 +18,28 @@
     </div>
     <div class="form-group">
         <label for="BirthDate">Date of Birth</label>
-        @{ 
+        @{
 
-            try
+        try
+        {
+            if (!Model.Customer.IsBirthDateValid)
             {
-                if (!Model.Customer.IsBirthDateValid)
-                {
-                        @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control",Value="" })
-                }
-                else
-                {
-                        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0: dd-MM-yyyy}", new { @class = "form-control" })
-                }
-            }
-            catch (NullReferenceException )
-                {
+                @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control", Value = "" })
+                @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+        }
+        else
+        {
+            @Html.TextBoxFor(m => m.Customer.BirthDate, "{0: dd-MM-yyyy}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+    }
+}
+catch (NullReferenceException)
+{
 
-                        @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control" })
-                }
-            }
+    @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+}
+        }
     </div>
 
 
@@ -48,6 +51,7 @@
     <div class="form-group">
         @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter, new { @class = "form-check-inline" })
         <label>Subscribe to News Letter</label>
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
 
     @Html.HiddenFor(m => m.Customer.Id)
