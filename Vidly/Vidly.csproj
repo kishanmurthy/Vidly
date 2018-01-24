@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201801241014122_addedGenreId.Designer.cs">
       <DependentUpon>201801241014122_addedGenreId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801241143572_addedRequiredtoMovieName.cs" />
+    <Compile Include="Migrations\201801241143572_addedRequiredtoMovieName.Designer.cs">
+      <DependentUpon>201801241143572_addedRequiredtoMovieName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801241014122_addedGenreId.resx">
       <DependentUpon>201801241014122_addedGenreId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801241143572_addedRequiredtoMovieName.resx">
+      <DependentUpon>201801241143572_addedRequiredtoMovieName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

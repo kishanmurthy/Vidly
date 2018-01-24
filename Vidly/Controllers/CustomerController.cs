@@ -40,7 +40,11 @@ namespace Vidly.Controllers
         public ActionResult Save(CustomerFormViewModel newCustomer)
         {
 
+                if(!ModelState.IsValid)
+                {
+                return View("CustomerForm",newCustomer);
 
+                }
 
 
             //foreach (var membershipType in membershipTypes)
@@ -51,7 +55,7 @@ namespace Vidly.Controllers
             //        break;
             //    }
             //}
-            //newCustomer.Customer.MembershipType = _context.MembershipTypes.Single(m => m.Id == newCustomer.MembershipTypeId);
+            newCustomer.Customer.MembershipType = _context.MembershipTypes.Single(m => m.Id == newCustomer.MembershipTypeId);
 
             if (newCustomer.Customer.BirthDate != new DateTime())
             {
@@ -74,6 +78,7 @@ namespace Vidly.Controllers
                 customerInDb.IsBirthDateValid = newCustomer.Customer.IsBirthDateValid;
                 customerInDb.BirthDate = newCustomer.Customer.BirthDate;
                 customerInDb.IsSubscribedToNewsLetter = newCustomer.Customer.IsSubscribedToNewsLetter;
+                customerInDb.MembershipType = newCustomer.Customer.MembershipType;
             }
 
 
