@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
-using System.Data.Entity;
 using Vidly.ViewModels;
+
 namespace Vidly.Controllers
 {
     public class CustomerController : Controller
@@ -22,8 +21,6 @@ namespace Vidly.Controllers
         public ActionResult Index()
         {
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-
             return View(customers);
         }
 
@@ -31,34 +28,79 @@ namespace Vidly.Controllers
         {
             var membershipTypes = _context.MembershipTypes.ToList();
 
-            var viewModel = new NewCustomerViewModel()
+            var viewModel = new CustomerFormViewModel()
             {
                 MembershipTypes = membershipTypes
             };
 
-
-            return View(viewModel);
+            return View("CustomerForm", viewModel);
         }
+
         [HttpPost]
-        public ActionResult Create(NewCustomerViewModel viewModel)
+        public ActionResult Save(CustomerFormViewModel newCustomer)
         {
 
-            return Content("");
-        }
 
-        protected override void Dispose(bool disposing)
+
+
+            //foreach (var membershipType in membershipTypes)
+            //{
+            //    if (membershipType.Id == new_customer.MembershipTypeId)
+            //    {
+            //        new_customer.Customer.MembershipType = membershipType;
+            //        break;
+            //    }
+            //}
+            //newCustomer.Customer.MembershipType = _context.MembershipTypes.Single(m => m.Id == newCustomer.MembershipTypeId);
+
+            if (newCustomer.Customer.BirthDate != new DateTime())
+            {
+                newCustomer.Customer.IsBirthDateValid = true;
+            }
+            else
+            {
+                newCustomer.Customer.IsBirthDateValid = false;
+                newCustomer.Customer.BirthDate = new DateTime(1800, 01, 01);
+
+            }
+
+            if (newCustomer.Customer.Id == 0)
+            {
+                _context.Customers.Add(newCustomer.Customer);
+            } else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == newCustomer.Customer.Id);
+                customerInDb.Name = newCustomer.Customer.Name;
+                customerInDb.IsBirthDateValid = newCustomer.Customer.IsBirthDateValid;
+                customerInDb.BirthDate = newCustomer.Customer.BirthDate;
+                customerInDb.IsSubscribedToNewsLetter = newCustomer.Customer.IsSubscribedToNewsLetter;
+            }
+
+
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Edit(int Id)
         {
-            _context.Dispose();
-            base.Dispose(disposing);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == Id);
+            
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel()
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm",viewModel);
         }
-
-
 
         public ActionResult Details(int Id)
         {
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-            
-            foreach(var customer in customers)
+
+            foreach (var customer in customers)
             {
                 if (customer.Id == Id)
                 {
@@ -69,16 +111,10 @@ namespace Vidly.Controllers
             return HttpNotFound();
         }
 
-
-
-        private List<Customer> GetCustomers()
+        protected override void Dispose(bool disposing)
         {
-            
-            return new List<Customer>
-            {
-                new Customer(){Name = "Tony", Id = 1},
-                new Customer(){Name = "Stark", Id = 2}
-            };
+            _context.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

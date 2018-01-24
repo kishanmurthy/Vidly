@@ -31,6 +31,14 @@ namespace Vidly.Controllers
             return View(movies);
         }
 
+
+        public ActionResult New()
+        {
+
+
+            return View();
+        }
+        /*
         public ActionResult Details(int Id)
         {
 
@@ -82,7 +90,7 @@ namespace Vidly.Controllers
 
             return Content(year+"/"+month);
         }
-
+        */
     }
     
 }
