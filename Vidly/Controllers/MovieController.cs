@@ -34,10 +34,64 @@ namespace Vidly.Controllers
 
         public ActionResult New()
         {
+            var genres = _context.Genres.ToList();
 
+            var viewModel = new MovieFormViewModel()
+            {
+                Genres = genres
+            };
 
-            return View();
+            return View(viewModel);
         }
+
+
+        public ActionResult Create(Movie movie)
+        {
+
+            movie.DateAdded = DateTime.Now;
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Edit(int Id)
+        {
+
+            var movie = _context.Movies.Single(m => m.Id == Id);
+
+
+            var genres = _context.Genres.ToList();
+
+            var viewModel = new MovieFormViewModel()
+            {
+                Movie = movie, 
+                Genres = genres
+            };
+
+            return View(viewModel);
+        }
+
+
+
+
+
+        public ActionResult Update(MovieFormViewModel editMovie)
+        {
+
+            var movie = _context.Movies.Single(m => m.Id == editMovie.Movie.Id);
+
+            movie.Name = editMovie.Movie.Name;
+            movie.ReleaseDate = editMovie.Movie.ReleaseDate;
+            movie.NumberInStock = editMovie.Movie.NumberInStock;
+            movie.GenreId = editMovie.Movie.GenreId;
+            
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
         /*
         public ActionResult Details(int Id)
         {

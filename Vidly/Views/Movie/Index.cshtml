@@ -1,14 +1,21 @@
 ﻿@model List<Vidly.Models.Movie>
 
 <h1>Movies</h1>
+<br />
+<form action="/movie/new">
+    <input type="submit"  value="New Movie" class="btn btn-primary">
+</form>
+<br />
 
 <table border="1" class="table">
+    
+    
     <tr><th>Movies</th></tr>
     @foreach (var movie in Model)
     {
         <tr>
             <td>
-                <a href="/movie/details/@movie.Id">@movie.Name</a>
+                <a href="/movie/edit/@movie.Id">@movie.Name</a>
             </td>
         </tr>
     }
