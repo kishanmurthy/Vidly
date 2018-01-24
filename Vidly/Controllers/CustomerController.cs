@@ -39,23 +39,8 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(CustomerFormViewModel newCustomer)
         {
-
-                if(!ModelState.IsValid)
-                {
-                return View("CustomerForm",newCustomer);
-
-                }
-
-
-            //foreach (var membershipType in membershipTypes)
-            //{
-            //    if (membershipType.Id == new_customer.MembershipTypeId)
-            //    {
-            //        new_customer.Customer.MembershipType = membershipType;
-            //        break;
-            //    }
-            //}
-            newCustomer.Customer.MembershipType = _context.MembershipTypes.Single(m => m.Id == newCustomer.MembershipTypeId);
+            
+                
 
             if (newCustomer.Customer.BirthDate != new DateTime())
             {
