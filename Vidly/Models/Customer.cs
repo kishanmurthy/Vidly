@@ -14,6 +14,7 @@ namespace Vidly.Models
         [StringLength(255)]
         public String Name { get; set; }
 
+        [Min18Years]
         public DateTime ? BirthDate { get; set; }
 
         
