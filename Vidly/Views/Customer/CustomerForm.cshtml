@@ -18,46 +18,50 @@
     </div>
     <div class="form-group">
         <label for="BirthDate">Date of Birth</label>
-        @{
+        @*
+                @{
 
-        try
-        {
-            if (!Model.Customer.IsBirthDateValid)
-            {
-                @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control", Value = "" })
-                @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+                try
+                {
+                    if (!Model.Customer.IsBirthDateValid)
+                    {
+                        @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control", Value = "" })
+                        @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+                }
+                else
+                {
+                    @Html.TextBoxFor(m => m.Customer.BirthDate, "{0: dd-MM-yyyy}", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+            }
         }
-        else
+        catch (NullReferenceException)
         {
-            @Html.TextBoxFor(m => m.Customer.BirthDate, "{0: dd-MM-yyyy}", new { @class = "form-control" })
+
+            @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Customer.BirthDate)
-    }
-}
-catch (NullReferenceException)
-{
-
-    @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.Customer.BirthDate)
-}
         }
+                }
+        *@
+        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0: dd-MM-yyyy}", new { @class = "form-control" })
+        
     </div>
 
 
-    <div class="form-group">
-        <label for="Customer_MembershipType">Membership Type</label>
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control" })
-    </div>
+            <div class="form-group">
+                <label for="Customer_MembershipType">Membership Type</label>
+                @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control" })
+            </div>
 
-    <div class="form-group">
-        @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter, new { @class = "form-check-inline" })
-        <label>Subscribe to News Letter</label>
-        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
-    </div>
+            <div class="form-group">
+                @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter, new { @class = "form-check-inline" })
+                <label>Subscribe to News Letter</label>
+                @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+            </div>
 
-    @Html.HiddenFor(m => m.Customer.Id)
-    <div class="form-group">
-        <input type="submit" value="Submit" class="btn btn-primary" formmethod="post" />
-    </div>
-}
+            @Html.HiddenFor(m => m.Customer.Id)
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" formmethod="post" />
+            </div>
+        }
 
 

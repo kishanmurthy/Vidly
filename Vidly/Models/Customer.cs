@@ -13,10 +13,15 @@ namespace Vidly.Models
         [Required]
         [StringLength(255)]
         public String Name { get; set; }
-        public DateTime BirthDate { get; set; }
-        public bool  IsBirthDateValid { get; set; }
+
+        public DateTime ? BirthDate { get; set; }
+
+        
+
         public bool IsSubscribedToNewsLetter { get; set; }
+
         public int MembershipTypeId { get; set; }
+
         public virtual MembershipType MembershipType { get; set; }
         
     }

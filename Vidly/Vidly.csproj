@@ -228,6 +228,14 @@
     <Compile Include="Migrations\201801241234428_changedCustomerModel.Designer.cs">
       <DependentUpon>201801241234428_changedCustomerModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801250528403_changeBirthdaytonullable.cs" />
+    <Compile Include="Migrations\201801250528403_changeBirthdaytonullable.Designer.cs">
+      <DependentUpon>201801250528403_changeBirthdaytonullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801250637501_removedisbirthdatevalid.cs" />
+    <Compile Include="Migrations\201801250637501_removedisbirthdatevalid.Designer.cs">
+      <DependentUpon>201801250637501_removedisbirthdatevalid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -356,6 +364,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801241234428_changedCustomerModel.resx">
       <DependentUpon>201801241234428_changedCustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801250528403_changeBirthdaytonullable.resx">
+      <DependentUpon>201801250528403_changeBirthdaytonullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801250637501_removedisbirthdatevalid.resx">
+      <DependentUpon>201801250637501_removedisbirthdatevalid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -39,7 +39,7 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(CustomerFormViewModel newCustomer)
         {
-
+            /*
 
             if (!ModelState.IsValid)
             {
@@ -51,18 +51,18 @@ namespace Vidly.Controllers
 
                 return View("CustomerForm", customer);
             }
+            */
 
+            //if (newCustomer.Customer.BirthDate != new DateTime())
+            //{
+            //    newCustomer.Customer.IsBirthDateValid = true;
+            //}
+            //else
+            //{
+            //    newCustomer.Customer.IsBirthDateValid = false;
+            //    newCustomer.Customer.BirthDate = new DateTime(1800, 01, 01);
 
-            if (newCustomer.Customer.BirthDate != new DateTime())
-            {
-                newCustomer.Customer.IsBirthDateValid = true;
-            }
-            else
-            {
-                newCustomer.Customer.IsBirthDateValid = false;
-                newCustomer.Customer.BirthDate = new DateTime(1800, 01, 01);
-
-            }
+            //}
 
             if (newCustomer.Customer.Id == 0)
             {
@@ -71,7 +71,6 @@ namespace Vidly.Controllers
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == newCustomer.Customer.Id);
                 customerInDb.Name = newCustomer.Customer.Name;
-                customerInDb.IsBirthDateValid = newCustomer.Customer.IsBirthDateValid;
                 customerInDb.BirthDate = newCustomer.Customer.BirthDate;
                 customerInDb.IsSubscribedToNewsLetter = newCustomer.Customer.IsSubscribedToNewsLetter;
                 customerInDb.MembershipType = newCustomer.Customer.MembershipType;
