@@ -38,32 +38,23 @@ namespace Vidly.Controllers
 
         [HttpPost]
         public ActionResult Save(CustomerFormViewModel newCustomer)
-        {
-            /*
-
+        {   
+            ModelState.Remove("Customer.Id");
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
+                var message = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
                 var customer = new CustomerFormViewModel()
                 {
+                    
+
                     Customer = newCustomer.Customer,
                     MembershipTypes = _context.MembershipTypes.ToList()
                 };
 
                 return View("CustomerForm", customer);
             }
-            */
-
-            //if (newCustomer.Customer.BirthDate != new DateTime())
-            //{
-            //    newCustomer.Customer.IsBirthDateValid = true;
-            //}
-            //else
-            //{
-            //    newCustomer.Customer.IsBirthDateValid = false;
-            //    newCustomer.Customer.BirthDate = new DateTime(1800, 01, 01);
-
-            //}
-
+            
             if (newCustomer.Customer.Id == 0)
             {
                 _context.Customers.Add(newCustomer.Customer);
